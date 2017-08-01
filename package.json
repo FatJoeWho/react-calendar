@@ -1,0 +1,39 @@
+{
+  "name": "react-calendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-transform-replace-object-assign": "^0.2.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^3.4.1"
+  },
+  "scripts": {
+    "build": "npm run build:dist",
+    "prebuild:dist": "rimraf dist/*",
+    "build:dist": "webpack -p",
+    "build:watch": "npm run build:dist -- --watch",
+    "test": "jest --coverage",
+    "test:watch": "npm run test -- --watch",
+    "flow": "flow check",
+    "flow:watch": "flow-watch",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FatJoeWho/react-calendar.git"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "author": "Julian Taylor (http://fatjoe.co)",
+  "bugs": {
+    "url": "https://github.com/FatJoeWho/react-calendar/issues"
+  },
+  "homepage": "https://github.com/FatJoeWho/react-calendar#readme"
+}
