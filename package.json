@@ -10,6 +10,7 @@
     "babel-plugin-transform-replace-object-assign": "^0.2.1",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "webpack": "^3.4.1"
   },
   "scripts": {
@@ -20,7 +21,7 @@
     "test": "jest --coverage",
     "test:watch": "npm run test -- --watch",
     "flow": "flow check",
-    "flow:watch": "flow-watch",
+    "flow:watch": "flow-watch --ignore node_modules/ --watch *.js --watch *.jsx --watch .flowconfig",
     "prepublish": "npm run build"
   },
   "repository": {
