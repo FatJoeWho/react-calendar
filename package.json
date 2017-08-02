@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "dependencies": {},
   "devDependencies": {
+    "@storybook/react": "^3.1.6",
     "babel-cli": "^6.24.1",
     "babel-loader": "^7.1.1",
     "babel-plugin-transform-replace-object-assign": "^0.2.1",
@@ -22,7 +23,8 @@
     "test:watch": "npm run test -- --watch",
     "flow": "flow check",
     "flow:watch": "flow-watch --ignore node_modules/ --watch *.js --watch *.jsx --watch .flowconfig",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "storybook": "start-storybook -p 6006"
   },
   "repository": {
     "type": "git",
