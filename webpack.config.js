@@ -43,7 +43,7 @@ module.exports = {
 		]
 	},
 	resolve: {
-		modules: [path.resolve("./src"), path.resolve("./node_modules")],
+		modules: ["node_modules", "src"],
 		extensions: [".js", ".jsx"]
 	}
 };
