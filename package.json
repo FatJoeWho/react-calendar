@@ -1,47 +1,61 @@
 {
-  "name": "react-calendar",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./dist/index.js",
-  "dependencies": {},
-  "devDependencies": {
-    "@storybook/react": "^3.1.6",
-    "babel-cli": "^6.24.1",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-transform-replace-object-assign": "^0.2.1",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
-    "flow": "^0.2.3",
-    "flow-coverage-report": "^0.3.0",
-    "jest": "^20.0.4",
-    "webpack": "^3.4.1"
-  },
-  "scripts": {
-    "build": "npm run build:dist",
-    "prebuild:dist": "rimraf dist/*",
-    "build:dist": "webpack -p",
-    "build:watch": "npm run build:dist -- --watch",
-    "test": "jest --coverage",
-    "test:watch": "npm run test -- --watch",
-    "flow": "flow check",
-    "flow:watch": "flow-watch --ignore node_modules/ --watch *.js --watch *.jsx --watch .flowconfig",
-    "prepublish": "npm run build",
-    "storybook": "start-storybook -p 6006"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FatJoeWho/react-calendar.git"
-  },
-  "files": [
-    "dist",
-    "src",
-    "README.md",
-    ".github"
-  ],
-  "author": "Julian Taylor (http://fatjoe.co)",
-  "bugs": {
-    "url": "https://github.com/FatJoeWho/react-calendar/issues"
-  },
-  "homepage": "https://github.com/FatJoeWho/react-calendar#readme"
+	"name": "react-calendar",
+	"version": "1.0.0",
+	"description": "",
+	"main": "./dist/index.js",
+	"dependencies": {
+		"classnames": "^2.2.5",
+		"faker": "^4.1.0",
+		"moment": "^2.18.1",
+		"react": "^15.6.1",
+		"react-dom": "^15.6.1",
+		"styled-components": "^2.1.1"
+	},
+	"devDependencies": {
+		"@storybook/react": "^3.1.6",
+		"babel-cli": "^6.24.1",
+		"babel-loader": "^7.1.1",
+		"babel-plugin-transform-replace-object-assign": "^0.2.1",
+		"babel-preset-env": "^1.6.0",
+		"babel-preset-flow": "^6.23.0",
+		"babel-preset-react": "^6.24.1",
+		"babel-preset-stage-2": "^6.24.1",
+		"enzyme": "^2.9.1",
+		"flow": "^0.2.3",
+		"flow-bin": "^0.52.0",
+		"flow-coverage-report": "^0.3.0",
+		"jest": "^20.0.4",
+		"react-addons-perf": "^15.4.2",
+		"react-perf-tool": "^0.2.1",
+		"react-test-renderer": "^15.6.1",
+		"webpack": "^3.4.1"
+	},
+	"scripts": {
+		"build": "npm run build:dist",
+		"prebuild:dist": "rimraf dist/*",
+		"build:dist": "webpack -p",
+		"build:watch": "npm run build:dist -- --watch",
+		"test": "jest --coverage",
+		"test:watch": "npm run test -- --watch",
+		"flow": "flow check",
+		"flow:watch": "flow-watch --ignore node_modules/ --watch *.js --watch *.jsx --watch .flowconfig",
+		"flow:coverage": "flow-coverage-report -x 'test/**/*.spec.js' -x 'stories/**/*.stories.js' -i 'src/**/*.js' -i 'src/**/*.jsx' -t html -t text",
+		"prepublish": "npm run build",
+		"storybook": "start-storybook -p 6006"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/FatJoeWho/react-calendar.git"
+	},
+	"files": ["dist", "src", "README.md", ".github"],
+	"author": "Julian Taylor (http://fatjoe.co)",
+	"bugs": {
+		"url": "https://github.com/FatJoeWho/react-calendar/issues"
+	},
+	"homepage": "https://github.com/FatJoeWho/react-calendar#readme",
+	"jest": {
+		"moduleDirectories": ["node_modules", "src", "src/components"],
+		"coverageDirectory": "./coverage/",
+		"collectCoverage": true
+	}
 }
