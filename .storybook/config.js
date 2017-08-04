@@ -7,10 +7,4 @@ function loadStories() {
 	req.keys().forEach(filename => req(filename));
 }
 
-addDecorator(story =>
-	<div style={{ padding: "8px" }}>
-		{story()}
-	</div>
-);
-
 configure(loadStories, module);
