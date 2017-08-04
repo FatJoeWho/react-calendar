@@ -17,16 +17,7 @@ module.exports = {
 	entry: entries,
 	output: {
 		filename: "[name].js",
-		path: path.join(__dirname, "dist/components/"),
-		libraryTarget: "commonjs2"
-	},
-	externals(context, request, callback) {
-		// Do not treat icon files as external
-		if (files.indexOf(request) > -1) {
-			return callback(null, false);
-		}
-		// Treat all other files as external
-		return callback(null, true);
+		path: path.join(__dirname, "dist/components/")
 	},
 	module: {
 		rules: [
