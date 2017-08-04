@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalendarDay Should render 1`] = `
+<div
+  className="sc-bdVaJa fGkvKS"
+>
+  1
+</div>
+`;
