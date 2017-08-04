@@ -4,4 +4,4 @@ node_js:
     - "v8"
 script:
     - npm i
-    - npm run test -- -u
+    - npm run test
