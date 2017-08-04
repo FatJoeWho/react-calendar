@@ -35,7 +35,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "README.md",
+    ".github"
   ],
   "author": "Julian Taylor (http://fatjoe.co)",
   "bugs": {
