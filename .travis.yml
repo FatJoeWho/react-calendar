@@ -2,6 +2,10 @@ sudo: false
 language: node_js
 node_js:
     - "v8"
+before_install:
+  - npm install -g codecov
 script:
-    - npm i
-    - npm run test
+  - npm i
+  - npm run test
+after_success:
+  - codecov
