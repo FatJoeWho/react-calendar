@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const Div = styled.div`
 	text-align: center;
-	background: skyblue;
+	background: ${props => (props.selected ? "yellow" : "skyblue")};
 	opacity: ${props => (props.fromOtherMonth ? "0.5" : "1")};
 	grid-column: ${props => props.gridColumn};
 	${props => props.styling};

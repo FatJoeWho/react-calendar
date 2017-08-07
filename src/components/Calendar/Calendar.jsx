@@ -6,8 +6,16 @@ import CalendarDay from "components/CalendarDay";
 import styled from "styled-components";
 
 export default class Calendar extends React.Component {
+	props: {
+		selected: Array<number>
+	};
+
 	static defaultProps = {
 		momentJsInstance: Moment()
+	};
+
+	state = {
+		selected: []
 	};
 
 	nextMonth = e => {
@@ -24,19 +32,47 @@ export default class Calendar extends React.Component {
 		});
 	};
 
+	makeSelection = (value: number) => {
+		let newValue = this.toggleSelectionValue(value);
+		this.setState({
+			selected: newValue
+		});
+	};
+
+	clearSelections = () => {
+		this.setState({ selected: [] });
+	};
+
+	toggleSelectionValue(value) {
+		const _return = this.state.selected;
+		_return.indexOf(value) == -1
+			? _return.push(value)
+			: _return.splice(_return.indexOf(value), 1);
+		return _return;
+	}
+
 	getDayList = () => {
 		return Array(this.props.momentJsInstance.daysInMonth())
 			.fill()
-			.map((_: mixed, dayNumber: number): Array<any> => {
+			.map((_: mixed, dayIndex: number): Array<any> => {
 				let dayInstance = this.props.momentJsInstance
 					.clone() //clone so that it is disposed in memory garbage collection
-					.date(dayNumber + 1); //0 index counting
+					.date(dayIndex + 1); //0 index counting
+
 				return (
 					<CalendarDay
-						key={dayNumber}
+						onClick={e => {
+							e.preventDefault();
+							this.makeSelection(dayIndex + 1);
+						}}
+						key={dayIndex}
 						fromOtherMonth={false}
 						gridColumn={dayInstance.day() + 1}
 						displayContent={dayInstance.format("D")}
+						selected={
+							this.state.selected.indexOf(parseInt(dayInstance.format("D"))) >
+							-1
+						}
 					/>
 				);
 			});
