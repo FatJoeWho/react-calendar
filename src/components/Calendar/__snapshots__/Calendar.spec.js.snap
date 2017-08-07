@@ -47,156 +47,218 @@ exports[`Calendar Should render 1`] = `
   >
     <div
       className="sc-bdVaJa fNcbOa"
+      onClick={[Function]}
+      selected={false}
     >
       1
     </div>
     <div
       className="sc-bdVaJa fpznfK"
+      onClick={[Function]}
+      selected={false}
     >
       2
     </div>
     <div
       className="sc-bdVaJa hELaXa"
+      onClick={[Function]}
+      selected={false}
     >
       3
     </div>
     <div
       className="sc-bdVaJa bHSUef"
+      onClick={[Function]}
+      selected={false}
     >
       4
     </div>
     <div
       className="sc-bdVaJa dEOBQp"
+      onClick={[Function]}
+      selected={false}
     >
       5
     </div>
     <div
       className="sc-bdVaJa fGkvKS"
+      onClick={[Function]}
+      selected={false}
     >
       6
     </div>
     <div
       className="sc-bdVaJa idLRsj"
+      onClick={[Function]}
+      selected={false}
     >
       7
     </div>
     <div
       className="sc-bdVaJa fNcbOa"
+      onClick={[Function]}
+      selected={false}
     >
       8
     </div>
     <div
       className="sc-bdVaJa fpznfK"
+      onClick={[Function]}
+      selected={false}
     >
       9
     </div>
     <div
       className="sc-bdVaJa hELaXa"
+      onClick={[Function]}
+      selected={false}
     >
       10
     </div>
     <div
       className="sc-bdVaJa bHSUef"
+      onClick={[Function]}
+      selected={false}
     >
       11
     </div>
     <div
       className="sc-bdVaJa dEOBQp"
+      onClick={[Function]}
+      selected={false}
     >
       12
     </div>
     <div
       className="sc-bdVaJa fGkvKS"
+      onClick={[Function]}
+      selected={false}
     >
       13
     </div>
     <div
       className="sc-bdVaJa idLRsj"
+      onClick={[Function]}
+      selected={false}
     >
       14
     </div>
     <div
       className="sc-bdVaJa fNcbOa"
+      onClick={[Function]}
+      selected={false}
     >
       15
     </div>
     <div
       className="sc-bdVaJa fpznfK"
+      onClick={[Function]}
+      selected={false}
     >
       16
     </div>
     <div
       className="sc-bdVaJa hELaXa"
+      onClick={[Function]}
+      selected={false}
     >
       17
     </div>
     <div
       className="sc-bdVaJa bHSUef"
+      onClick={[Function]}
+      selected={false}
     >
       18
     </div>
     <div
       className="sc-bdVaJa dEOBQp"
+      onClick={[Function]}
+      selected={false}
     >
       19
     </div>
     <div
       className="sc-bdVaJa fGkvKS"
+      onClick={[Function]}
+      selected={false}
     >
       20
     </div>
     <div
       className="sc-bdVaJa idLRsj"
+      onClick={[Function]}
+      selected={false}
     >
       21
     </div>
     <div
       className="sc-bdVaJa fNcbOa"
+      onClick={[Function]}
+      selected={false}
     >
       22
     </div>
     <div
       className="sc-bdVaJa fpznfK"
+      onClick={[Function]}
+      selected={false}
     >
       23
     </div>
     <div
       className="sc-bdVaJa hELaXa"
+      onClick={[Function]}
+      selected={false}
     >
       24
     </div>
     <div
       className="sc-bdVaJa bHSUef"
+      onClick={[Function]}
+      selected={false}
     >
       25
     </div>
     <div
       className="sc-bdVaJa dEOBQp"
+      onClick={[Function]}
+      selected={false}
     >
       26
     </div>
     <div
       className="sc-bdVaJa fGkvKS"
+      onClick={[Function]}
+      selected={false}
     >
       27
     </div>
     <div
       className="sc-bdVaJa idLRsj"
+      onClick={[Function]}
+      selected={false}
     >
       28
     </div>
     <div
       className="sc-bdVaJa fNcbOa"
+      onClick={[Function]}
+      selected={false}
     >
       29
     </div>
     <div
       className="sc-bdVaJa fpznfK"
+      onClick={[Function]}
+      selected={false}
     >
       30
     </div>
     <div
       className="sc-bdVaJa hELaXa"
+      onClick={[Function]}
+      selected={false}
     >
       31
     </div>
