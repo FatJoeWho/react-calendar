@@ -3,12 +3,30 @@ import renderer from "react-test-renderer";
 import { mount } from "enzyme";
 import Calendar from "components/Calendar";
 import Moment from "moment";
+import Faker from "faker";
 
 const fakeEvent = {
 	preventDefault: () => {
 		return;
 	}
 };
+
+const _date = new Moment(),
+	additionalDataTypes = ["", Faker.lorem.word, Faker.lorem.word];
+
+let test_data = [];
+
+for (var count = 0; count <= _date.daysInMonth(); count++) {
+	test_data[count] = {
+		type:
+			additionalDataTypes[
+				Faker.random.number({
+					min: 0,
+					max: 2
+				})
+			]
+	};
+}
 
 describe("Calendar", () => {
 	it("Should render", () => {
@@ -60,5 +78,47 @@ describe("Calendar", () => {
 		component.instance().clearSelections();
 		expect(component.state("selected").length).toEqual(0);
 		expect(component.state("selected").indexOf(6)).toBe(-1);
+	});
+
+	it("Should allow custom functions to operate on passed data", () => {
+		const _date = new Moment("2 August 2017"),
+			component = mount(
+				<Calendar
+					month={_date}
+					additionalDatesData={test_data}
+					customStyling={props => {
+						return { border: "1px solid green" };
+					}}
+					onClickCallback={data => {
+						return "custom call back response";
+					}}
+				/>
+			);
+
+		let componentInstance = component.instance();
+		const callbackResult = componentInstance.props.onClickCallback(
+			componentInstance.state.additionalDatesData[0]
+		);
+		expect(callbackResult).toEqual("custom call back response");
+	});
+
+	it("Should allow custom styling based on passed data", () => {
+		const _date = new Moment("2 August 2017"),
+			component = mount(
+				<Calendar
+					month={_date}
+					additionalDatesData={test_data}
+					customStyling={props => {
+						return { border: "1px solid green" };
+					}}
+					onClickCallback={data => {
+						return "custom call back response";
+					}}
+				/>
+			);
+
+		let componentInstance = component.instance();
+		const callbackResult = componentInstance.props.customStyling();
+		expect(callbackResult).toEqual({ border: "1px solid green" });
 	});
 });

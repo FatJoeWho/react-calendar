@@ -7,7 +7,10 @@ import styled from "styled-components";
 
 export default class Calendar extends React.Component {
 	props: {
-		selected: Array<number>
+		selected: Array<number>,
+		additionalDatesData?: Array<mixed>,
+		additionalDayStyling?: string,
+		customHandler?: Function
 	};
 
 	static defaultProps = {
@@ -15,7 +18,8 @@ export default class Calendar extends React.Component {
 	};
 
 	state = {
-		selected: []
+		selected: [],
+		additionalDatesData: []
 	};
 
 	nextMonth = e => {
@@ -61,14 +65,20 @@ export default class Calendar extends React.Component {
 
 				return (
 					<CalendarDay
+						additionalData={
+							this.props.additionalDatesData &&
+							this.props.additionalDatesData[dayIndex]
+								? this.props.additionalDatesData[dayIndex]
+								: null
+						}
 						onClick={e => {
-							e.preventDefault();
-							this.makeSelection(dayIndex + 1);
+							this.handleOnClick(e, dayIndex);
 						}}
 						key={dayIndex}
 						fromOtherMonth={false}
 						gridColumn={dayInstance.day() + 1}
 						displayContent={dayInstance.format("D")}
+						style={this.getCustomStyling(dayIndex)}
 						selected={
 							this.state.selected.indexOf(parseInt(dayInstance.format("D"))) >
 							-1
@@ -77,6 +87,23 @@ export default class Calendar extends React.Component {
 				);
 			});
 	};
+
+	getCustomStyling(dayIndex) {
+		if (
+			this.props.additionalDatesData &&
+			this.props.additionalDatesData[dayIndex] != null
+		) {
+			return this.props.customStyling(this.props.additionalDatesData[dayIndex]);
+		} else {
+			return {};
+		}
+	}
+
+	handleOnClick(e, dayIndex) {
+		e.preventDefault();
+		this.makeSelection(dayIndex + 1);
+		this.props.onClickCallback(this.props.additionalDatesData[dayIndex]);
+	}
 
 	render() {
 		const dayList = this.getDayList();

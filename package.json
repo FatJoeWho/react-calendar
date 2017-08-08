@@ -47,14 +47,23 @@
 		"type": "git",
 		"url": "git+https://github.com/FatJoeWho/react-calendar.git"
 	},
-	"files": ["dist", "src", "README.md", ".github"],
+	"files": [
+		"dist",
+		"src",
+		"README.md",
+		".github"
+	],
 	"author": "Julian Taylor (http://fatjoe.co)",
 	"bugs": {
 		"url": "https://github.com/FatJoeWho/react-calendar/issues"
 	},
 	"homepage": "https://github.com/FatJoeWho/react-calendar#readme",
 	"jest": {
-		"moduleDirectories": ["node_modules", "src", "src/components"],
+		"moduleDirectories": [
+			"node_modules",
+			"src",
+			"src/components"
+		],
 		"coverageDirectory": "./coverage/",
 		"collectCoverage": true
 	}
