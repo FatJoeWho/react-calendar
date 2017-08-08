@@ -91,7 +91,8 @@ export default class Calendar extends React.Component {
 	getCustomStyling(dayIndex) {
 		if (
 			this.props.additionalDatesData &&
-			this.props.additionalDatesData[dayIndex] != null
+			this.props.additionalDatesData[dayIndex] != null &&
+			this.props.customStyling !== undefined
 		) {
 			return this.props.customStyling(this.props.additionalDatesData[dayIndex]);
 		} else {
