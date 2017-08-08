@@ -29,7 +29,7 @@ for (var count = 0; count <= _date.daysInMonth(); count++) {
 storiesOf("Calendar", module)
 	.add("Basic Month", () => <Calendar month={_date} />)
 	.add("Calendar with data", () =>
-		<Calendar month={_date} datesData={test_data} />
+		<Calendar month={_date} additionalDatesData={test_data} />
 	)
 	.add("Calendar with custom data", () =>
 		<Calendar
