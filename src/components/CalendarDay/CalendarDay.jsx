@@ -13,6 +13,7 @@ const Div = styled.div`
 
 export default class CalendarDay extends React.Component {
 	props: {
+		children?: ReactElement,
 		displayContent: string,
 		gridColumn: number
 	};
