@@ -30,21 +30,21 @@ for (var count = 0; count <= _date.daysInMonth(); count++) {
 
 describe("Calendar", () => {
 	it("Should render", () => {
-		const _date = new Moment("2 August 2017"),
+		const _date = new Moment("2 August 2017", "D MMMM YYYY"),
 			component = renderer.create(<Calendar month={_date} />);
 		let tree = component.toJSON();
 		expect(tree).toMatchSnapshot();
 	});
 
 	it("Should fetch an array of days", () => {
-		const _date = new Moment("2 August 2017"),
+		const _date = new Moment("2 August 2017", "D MMMM YYYY"),
 			component = mount(<Calendar month={_date} />),
 			days = component.instance().getDayList();
 		expect(days.length).toEqual(31);
 	});
 
 	it("Should go to next and prev month", () => {
-		const _date = new Moment("2 August 2017"),
+		const _date = new Moment("2 August 2017", "D MMMM YYYY"),
 			component = mount(<Calendar month={_date} />);
 
 		expect(component.props().momentJsInstance.format("M")).toEqual("8");
@@ -56,7 +56,7 @@ describe("Calendar", () => {
 	});
 
 	it("Should allow dates to be selected and deselected", () => {
-		const _date = new Moment("2 August 2017"),
+		const _date = new Moment("2 August 2017", "D MMMM YYYY"),
 			component = mount(<Calendar month={_date} />);
 
 		component.instance().makeSelection(6);
@@ -69,7 +69,7 @@ describe("Calendar", () => {
 	});
 
 	it("Should clear selected dates", () => {
-		const _date = new Moment("2 August 2017"),
+		const _date = new Moment("2 August 2017", "D MMMM YYYY"),
 			component = mount(<Calendar month={_date} />);
 
 		component.instance().makeSelection(6);
@@ -81,7 +81,7 @@ describe("Calendar", () => {
 	});
 
 	it("Should allow custom functions to operate on passed data", () => {
-		const _date = new Moment("2 August 2017"),
+		const _date = new Moment("2 August 2017", "D MMMM YYYY"),
 			component = mount(
 				<Calendar
 					month={_date}
@@ -97,13 +97,13 @@ describe("Calendar", () => {
 
 		let componentInstance = component.instance();
 		const callbackResult = componentInstance.props.onClickCallback(
-			componentInstance.state.additionalDatesData[0]
+			componentInstance.props.additionalDatesData[0]
 		);
 		expect(callbackResult).toEqual("custom call back response");
 	});
 
 	it("Should allow custom styling based on passed data", () => {
-		const _date = new Moment("2 August 2017"),
+		const _date = new Moment("2 August 2017", "D MMMM YYYY"),
 			component = mount(
 				<Calendar
 					month={_date}
