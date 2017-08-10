@@ -14,19 +14,22 @@ const fakeEvent = {
 const _date = new Moment(),
 	additionalDataTypes = ["", Faker.lorem.word, Faker.lorem.word];
 
-let test_data = [];
-
-for (var count = 0; count <= _date.daysInMonth(); count++) {
-	test_data[count] = {
-		type:
-			additionalDataTypes[
-				Faker.random.number({
-					min: 0,
-					max: 2
-				})
-			]
-	};
-}
+let generateTestDateData = (monthSuffix, numberOfDays) => {
+	let testData = [];
+	for (let count = 1; count <= numberOfDays; count++) {
+		testData[count + monthSuffix] = {
+			type:
+				additionalDataTypes[
+					Faker.random.number({
+						min: 0,
+						max: 2
+					})
+				]
+		};
+	}
+	return testData;
+};
+let testData = generateTestDateData("/8", 31);
 
 describe("Calendar", () => {
 	it("Should render", () => {
@@ -85,7 +88,7 @@ describe("Calendar", () => {
 			component = mount(
 				<Calendar
 					month={_date}
-					additionalDatesData={test_data}
+					additionalDatesData={testData}
 					customStyling={props => {
 						return { border: "1px solid green" };
 					}}
@@ -107,7 +110,7 @@ describe("Calendar", () => {
 			component = mount(
 				<Calendar
 					month={_date}
-					additionalDatesData={test_data}
+					additionalDatesData={testData}
 					customStyling={props => {
 						return { border: "1px solid green" };
 					}}
