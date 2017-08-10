@@ -36,7 +36,7 @@ export default class Calendar extends React.Component {
 		});
 	};
 
-	makeSelection = (value: number) => {
+	makeSelection = (value: string) => {
 		let newValue = this.toggleSelectionValue(value);
 		this.setState({
 			selected: newValue
@@ -56,6 +56,7 @@ export default class Calendar extends React.Component {
 	}
 
 	getDayList = () => {
+		const monthIndex = this.props.momentJsInstance.format("M");
 		return Array(this.props.momentJsInstance.daysInMonth())
 			.fill()
 			.map((_: mixed, dayIndex: number): Array<any> => {
@@ -67,44 +68,50 @@ export default class Calendar extends React.Component {
 					<CalendarDay
 						additionalData={
 							this.props.additionalDatesData &&
-							this.props.additionalDatesData[dayIndex]
-								? this.props.additionalDatesData[dayIndex]
+							this.props.additionalDatesData[dayIndex + "/" + monthIndex]
+								? this.props.additionalDatesData[dayIndex + "/" + monthIndex]
 								: null
 						}
 						onClick={e => {
-							this.handleOnClick(e, dayIndex);
+							this.handleOnClick(e, dayIndex + "/" + monthIndex);
 						}}
 						key={dayIndex}
 						fromOtherMonth={false}
 						gridColumn={dayInstance.day() + 1}
 						displayContent={dayInstance.format("D")}
-						style={this.getCustomStyling(dayIndex)}
+						style={this.getCustomStyling(dayIndex + "/" + monthIndex)}
 						selected={
-							this.state.selected.indexOf(parseInt(dayInstance.format("D"))) >
-							-1
+							this.state.selected.indexOf(dayIndex + "/" + monthIndex) > -1
 						}
 					/>
 				);
 			});
 	};
 
-	getCustomStyling(dayIndex) {
+	getCustomStyling(dateIndex) {
 		if (
 			this.props.additionalDatesData &&
-			this.props.additionalDatesData[dayIndex] != null &&
+			this.props.additionalDatesData[dateIndex] != null &&
 			this.props.customStyling !== undefined
 		) {
-			return this.props.customStyling(this.props.additionalDatesData[dayIndex]);
+			return this.props.customStyling(
+				this.props.additionalDatesData[dateIndex]
+			);
 		} else {
 			return {};
 		}
 	}
 
-	handleOnClick(e, dayIndex) {
+	handleOnClick(e, dateIndex) {
 		e.preventDefault();
-		this.makeSelection(dayIndex + 1);
-		this.props.onClickCallback(this.props.additionalDatesData[dayIndex]);
+		this.makeSelection(dateIndex);
+		this.props.onClickCallback(this.props.additionalDatesData[dateIndex]);
 	}
+
+	addAdditionalDatesData = newData => {
+		let newArray = Object.assign({}, this.props.additionalDatesData, newData);
+		this.setState({ additionalDatesData: newArray });
+	};
 
 	render() {
 		const dayList = this.getDayList();
