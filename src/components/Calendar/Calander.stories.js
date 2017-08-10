@@ -11,30 +11,32 @@ const _date = new Moment(),
 		Faker.lorem.word()
 	];
 
-let test_data = [];
-
-for (var count = 0; count <= _date.daysInMonth(); count++) {
-	test_data[count] = {
-		type:
-			additionalDataTypes[
-				Faker.random.number({
-					min: 0,
-					max: 2
-				})
-			],
-		value: Faker.lorem.word
-	};
-}
+let generateTestDateData = (monthSuffix, numberOfDays) => {
+	let testData = [];
+	for (let count = 1; count <= numberOfDays; count++) {
+		testData[count + monthSuffix] = {
+			type:
+				additionalDataTypes[
+					Faker.random.number({
+						min: 0,
+						max: 2
+					})
+				]
+		};
+	}
+	return testData;
+};
+let testData = generateTestDateData("/8", 31);
 
 storiesOf("Calendar", module)
 	.add("Basic Month", () => <Calendar month={_date} />)
 	.add("Calendar with data", () =>
-		<Calendar month={_date} additionalDatesData={test_data} />
+		<Calendar month={_date} additionalDatesData={testData} />
 	)
 	.add("Calendar with custom data", () =>
 		<Calendar
 			month={new Moment("2 August 2017")}
-			additionalDatesData={test_data}
+			additionalDatesData={testData}
 			customStyling={props => {
 				return {
 					border: props.type == additionalDataTypes[1] ? "10px solid blue" : ""
