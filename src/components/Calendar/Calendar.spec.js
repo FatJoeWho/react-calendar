@@ -124,4 +124,56 @@ describe("Calendar", () => {
 		const callbackResult = componentInstance.props.customStyling();
 		expect(callbackResult).toEqual({ border: "1px solid green" });
 	});
+
+	it("Should add additional dates data via function", () => {
+		let testData2 = generateTestDateData("/2", 28);
+		const _date = new Moment("2 August 2017", "D MMMM YYYY"),
+			component = mount(
+				<Calendar
+					month={_date}
+					additionalDatesData={testData}
+					customStyling={props => {
+						return { border: "1px solid green" };
+					}}
+					onClickCallback={data => {
+						return "custom call back response";
+					}}
+				/>
+			);
+
+		let componentInstance = component.instance(),
+			originalAdditionalDatesData = Object.assign(
+				{},
+				componentInstance.props.additionalDatesData
+			),
+			currentAdditionalDatesData;
+
+		componentInstance.addAdditionalDatesData(testData2);
+
+		currentAdditionalDatesData = componentInstance.props.additionalDatesData;
+
+		expect(
+			Object.keys(testData).every(el => {
+				return Object.keys(originalAdditionalDatesData).indexOf(el) > -1;
+			})
+		).toEqual(true); //check testData elements are in the originalAdditionalDatesData array.
+
+		expect(
+			Object.keys(testData2).every(el => {
+				return Object.keys(originalAdditionalDatesData).indexOf(el) == -1;
+			})
+		).toEqual(true); //check testData2 elements are not in the originalAdditionalDatesData array.
+
+		expect(
+			Object.keys(testData).every(el => {
+				return Object.keys(currentAdditionalDatesData).indexOf(el) > -1;
+			})
+		).toEqual(true); //check testData elements are in the currentAdditionalDatesData array.
+
+		expect(
+			Object.keys(testData2).every(el => {
+				return Object.keys(currentAdditionalDatesData).indexOf(el) == -1;
+			})
+		).toEqual(true); //check testData2 elements are not in the currentAdditionalDatesData array.
+	});
 });
