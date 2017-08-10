@@ -9,8 +9,9 @@ export default class Calendar extends React.Component {
 	props: {
 		selected: Array<number>,
 		additionalDatesData?: Array<mixed>,
-		additionalDayStyling?: string,
-		customHandler?: Function
+		customHandler?: Function,
+		customStyling?: Function,
+		momentJsInstance: mixed
 	};
 
 	static defaultProps = {
@@ -22,14 +23,14 @@ export default class Calendar extends React.Component {
 		additionalDatesData: []
 	};
 
-	nextMonth = e => {
+	nextMonth = (e: Event) => {
 		e.preventDefault();
 		this.setState({
 			momentJsInstance: this.props.momentJsInstance.add(1, "M")
 		});
 	};
 
-	prevMonth = e => {
+	prevMonth = (e: Event) => {
 		e.preventDefault();
 		this.setState({
 			momentJsInstance: this.props.momentJsInstance.subtract(1, "M")
@@ -47,7 +48,7 @@ export default class Calendar extends React.Component {
 		this.setState({ selected: [] });
 	};
 
-	toggleSelectionValue(value) {
+	toggleSelectionValue(value: string) {
 		const _return = this.state.selected;
 		_return.indexOf(value) == -1
 			? _return.push(value)
@@ -56,11 +57,11 @@ export default class Calendar extends React.Component {
 	}
 
 	getDayList = () => {
-		const monthIndex = this.props.momentJsInstance.format("M");
+		const monthIndex: number = this.props.momentJsInstance.format("M");
 		return Array(this.props.momentJsInstance.daysInMonth())
 			.fill()
 			.map((_: mixed, dayIndex: number): Array<any> => {
-				let dayInstance = this.props.momentJsInstance
+				let dayInstance: mixed = this.props.momentJsInstance
 					.clone() //clone so that it is disposed in memory garbage collection
 					.date(dayIndex + 1); //0 index counting
 
@@ -72,7 +73,7 @@ export default class Calendar extends React.Component {
 								? this.props.additionalDatesData[dayIndex + "/" + monthIndex]
 								: null
 						}
-						onClick={e => {
+						onClick={(e: Event) => {
 							this.handleOnClick(e, dayIndex + "/" + monthIndex);
 						}}
 						key={dayIndex}
@@ -88,7 +89,7 @@ export default class Calendar extends React.Component {
 			});
 	};
 
-	getCustomStyling(dateIndex) {
+	getCustomStyling(dateIndex: string) {
 		if (
 			this.props.additionalDatesData &&
 			this.props.additionalDatesData[dateIndex] != null &&
@@ -102,14 +103,18 @@ export default class Calendar extends React.Component {
 		}
 	}
 
-	handleOnClick(e, dateIndex) {
+	handleOnClick(e: Event, dateIndex: string) {
 		e.preventDefault();
 		this.makeSelection(dateIndex);
 		this.props.onClickCallback(this.props.additionalDatesData[dateIndex]);
 	}
 
-	addAdditionalDatesData = newData => {
-		let newArray = Object.assign({}, this.props.additionalDatesData, newData);
+	addAdditionalDatesData = (newData: mixed) => {
+		let newArray: Array<mixed> = Object.assign(
+			{},
+			this.props.additionalDatesData,
+			newData
+		);
 		this.setState({ additionalDatesData: newArray });
 	};
 
